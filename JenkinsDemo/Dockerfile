@@ -23,8 +23,8 @@
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /App
-EXPOSE 1000
-ENV ASPNETCORE_URLS=http://*:1000
+#EXPOSE 1000
+#ENV ASPNETCORE_URLS=http://*:1000
 # Copy everything
 COPY . ./
 # Restore as distinct layers
