@@ -18,6 +18,12 @@ namespace JenkinsDemo.Controllers
             _logger = logger;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> test([FromBody] WeatherForecast model)
+        {
+            return Ok("calistivalla");
+        }
+
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
