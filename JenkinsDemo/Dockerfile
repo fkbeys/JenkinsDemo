@@ -2,19 +2,18 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-#EXPOSE 1000
+EXPOSE 80
 
-#FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-#WORKDIR /src
-#COPY ["JenkinsDemo/JenkinsDemo.csproj", "/var/jenkins_home/workspace/TestApi/JenkinsDemo"]
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["JenkinsDemo/JenkinsDemo.csproj", "/JenkinsDemo"]
+RUN dotnet restore "JenkinsDemo/JenkinsDemo.csproj"
 COPY . .
-RUN dotnet restore  
-COPY . .
-#WORKDIR "/src/JenkinsDemo"
-#RUN dotnet build "JenkinsDemo.csproj" -c Release -o /app/build
-#
+WORKDIR "/src/JenkinsDemo"
+RUN dotnet build "JenkinsDemo.csproj" -c Release -o /app/build
+
 FROM build AS publish
-RUN dotnet publish  --no-restore -c Release -o out
+RUN dotnet publish "JenkinsDemo.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
