@@ -2,11 +2,11 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 80
+EXPOSE 1000
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["JenkinsDemo/JenkinsDemo.csproj", "/var/jenkins_home/workspace/TestApi"]
+#COPY ["JenkinsDemo/JenkinsDemo.csproj", "/var/jenkins_home/workspace/TestApi/JenkinsDemo"]
 RUN dotnet restore "JenkinsDemo/JenkinsDemo.csproj"
 COPY . .
 WORKDIR "/src/JenkinsDemo"
