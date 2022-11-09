@@ -6,7 +6,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["JenkinsDemo/JenkinsDemo.csproj", "JenkinsDemo/"]
+COPY ["JenkinsDemo/JenkinsDemo.csproj", "/var/jenkins_home/workspace/TestApi/JenkinsDemo"]
 RUN dotnet restore "JenkinsDemo/JenkinsDemo.csproj"
 COPY . .
 WORKDIR "/src/JenkinsDemo"
